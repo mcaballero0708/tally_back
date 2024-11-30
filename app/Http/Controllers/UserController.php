@@ -20,34 +20,19 @@ class UserController extends Controller
         });
     }
 
-    /**
-     * Display a listing of the users.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function index()
     {
         $users = User::all();
         return response()->json($users);
     }
 
-    /**
-     * Display the specified user.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public function show(User $user)
     {
         return response()->json($user);
     }
 
-    /**
-     * Store a newly created user in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -69,13 +54,6 @@ class UserController extends Controller
         ], 201);
     }
 
-    /**
-     * Update the specified user in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function update(Request $request, User $user)
     {
         $request->validate([
@@ -103,12 +81,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified user from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function destroy(User $user)
     {
         $user->delete();

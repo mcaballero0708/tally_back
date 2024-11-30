@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Post;
@@ -29,23 +30,24 @@ class PostController extends Controller
         $post = Post::create([
             'title' => $request->get('title', ''),
             'content' => $request->get('content', ''),
+            'user_id' => Auth::user()->getAuthIdentifier()
         ]);
 
         return response()->json([
             'message' => 'Post created successfully',
             'post' => $post,
-        ], 201);;
+        ], 201);
     }
 
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('user')->get();
         return response()->json($posts, 200);
     }
 
     public function show($id)
     {
-        $post = Post::find($id);
+        $post = Post::with('user')->find($id);
 
         if (!$post) {
             return response()->json(['message' => 'Post not found'], 404);
@@ -62,7 +64,7 @@ class PostController extends Controller
         ]);
 
 
-        $post = Post::find($id);
+        $post = Post::with('user')->find($id);
 
         if (!$post) {
             return response()->json(['message' => 'Post not found'], 404);
