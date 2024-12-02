@@ -22,5 +22,11 @@ class UserSeeder extends Seeder
             'email' => 'jane@example.com',
             'password' => Hash::make('password123'),
         ]);
+
+        User::create([
+            'name' => 'Mike OC',
+            'email' => 'michael@example.com',
+            'password' => Hash::make('password123'),
+        ]);
     }
 }
