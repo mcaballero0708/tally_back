@@ -1,0 +1,23 @@
+
+services:
+    backend:
+        build:
+            context: docker
+        container_name: app-tally-2
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - "8000:80"
+        networks:
+            - app-network
+        command: >
+            bash -c "cp .env.example .env &&
+                     composer install --no-interaction &&
+                     php artisan key:generate &&
+                     php artisan migrate --force &&
+                     php artisan jwt:secret &&
+                     apache2-foreground"
+
+networks:
+    app-network:
+        driver: bridge
