@@ -9,5 +9,6 @@
 - Entra a la raíz del proyecto usando CMD o Powershell
 - Ejecutar el comando `docker-compose up`
 - Esperar a que termine la instalación
+- Verificar que se pueda ver la página web [Inicio](http://localhost:8000/public/index.php)
 - Importar la colección de endpoints en Postman [APIs.postman_collection.json](APIs.postman_collection.json)
 - Probar los servicios
